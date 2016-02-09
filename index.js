@@ -370,6 +370,7 @@ var ModalBox = React.createClass({
     var size        = {height: this.state.containerHeight, width: this.state.containerWidth};
     var offsetX     = (this.state.containerWidth - this.state.width) / 2;
     var backdrop    = this.renderBackdrop(size);
+    var handlers    = (this.props.swipeToClose) ? this.state.pan.panHandlers : {};
 
     if (!visible) return <View/>
 
@@ -379,7 +380,7 @@ var ModalBox = React.createClass({
         <Animated.View
          onLayout={this.onViewLayout}
          style={[styles.wrapper, size, this.props.style, {transform: [{translateY: this.state.position}, {translateX: offsetX}]} ]}
-         {...this.state.pan.panHandlers}>
+         {...handlers}>
           {this.props.children}
         </Animated.View>
       </View>
